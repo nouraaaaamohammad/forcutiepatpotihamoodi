@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome, Love</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="center">
+    <h2>Enter the secret passcode to begin:</h2>
+    <input type="password" id="mainPasscode" placeholder="Passcode">
+    <button onclick="checkMainPasscode()">Enter</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
