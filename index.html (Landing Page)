@@ -1,16 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Welcome, Love</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Surprise</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #fff0f5;
+    padding: 50px;
+  }
+  #mainMenu {
+    display: none;
+    margin-top: 30px;
+  }
+  .box {
+    width: 200px;
+    height: 100px;
+    background-color: #f9dae2;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    vertical-align: top;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.2s;
+  }
+  .box:hover {
+    transform: scale(1.05);
+  }
+  #wrongPass {
+    color: red;
+    display: none;
+    margin-top: 10px;
+  }
+  #album img {
+    width: 150px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    object-fit: cover;
+    transition: transform 0.2s;
+  }
+  #album img:hover {
+    transform: scale(1.05);
+  }
+  #lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  #lightbox img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+  }
+</style>
 </head>
 <body>
-  <div class="center">
-    <h2>Enter the secret passcode to begin:</h2>
-    <input type="password" id="mainPasscode" placeholder="Passcode">
-    <button onclick="checkMainPasscode()">Enter</button>
-    <p id="error" style="color:red;"></p>
-  </div>
-  <script src="script.js"></script>
+
+<h1>hi my love, this is a simple thing i did for you hehe 😘 i hope you like it</h1>
+<p>if you want to enter the main menu, you should enter the passcode. you have to guess it heh:</p>
+<input type="password" id="passcodeInput" placeholder="Enter passcode">
+<button onclick="checkPasscode()">Enter</button>
+<p id="wrongPass">that's wrong dummy head guess again (hint: it's a date)</p>
+
+<div id="mainMenu">
+  <h2>Main Menu</h2>
+  <div class="box" onclick="alert('A small letter for you my love')">A small letter for you my love</div>
+  <div class="box" onclick="alert('Songs that remind me of you')">Songs remind me of you</div>
+  <div class="box" onclick="alert('Letters for you my sweet love')">Letters for you my sweet love</div>
+  <div class="box" onclick="checkSecondPasscode()">smoll album of your hot gf</div>
+  <div class="box" onclick="loveQuiz()">mini quiz about me</div>
+</div>
+
+<!-- Album Section -->
+<div id="album" style="display:none; margin-top: 20px;">
+  <h2>my album for you 😘</h2>
+  <!-- Add your images here -->
+  <img src="Screenshot 2025-10-05 100922" alt="Photo 1" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100815" alt="Photo 2" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100319" alt="Photo 3" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100306" alt="Photo 4" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100140" alt="Photo 5" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100106" alt="Photo 6" onclick="openLightbox(this)">
+</div>
+
+<!-- Lightbox for album images -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img src="" alt="Enlarged Photo">
+</div>
+
+<script>
+  // First Passcode
+  const firstPasscode = "162009";
+  function checkPasscode() {
+    const input = document.getElementById("passcodeInput").value;
+    if(input === firstPasscode) {
+      document.getElementById("mainMenu").style.display = "block";
+      document.getElementById("passcodeInput").style.display = "none";
+      document.querySelector("button").style.display = "none";
+    } else {
+      const wrong = document.getElementById("wrongPass");
+      wrong.style.display = "block";
+      setTimeout(() => { wrong.style.display = "none"; }, 5000);
+    }
+  }
+
+  // Second Passcode for album
+  function checkSecondPasscode() {
+    let secondPass = prompt("Enter the secret passcode to see the album:");
+    if(secondPass && secondPass.toLowerCase() === "i wanna see my sexy girlfriend") {
+      alert("yay You can see the album 😘");
+      document.getElementById("album").style.display = "block";
+    } else {
+      alert('that's wrong my love try again, Hint: you should say "i wanna see my..."');
+    }
+  }
+
+  // Love Quiz
+  function loveQuiz() {
+    const questions = [
+      { question: "What is my favorite color?", options: ["pink", "blue", "white", "purple"], answer: "white" },
+      { question: "Which snack do I love?", options: ["chocolate", "chips", "ice cream", "cookies", "you"], answer: "you" },
+      { question: "What color is my hair?", options: ["dark brown", "light brown", "red"], answer: "light brown" },
+      { question: "What’s my favorite song?", options: ["intro(end of the world)", "anyone else but you", "good looking"], answer: "anyone else but you" },
+      { question: "Do you like me?", options: ["yes", "opposite of no", "oui", "si"], answer: "yes" }
+    ];
+    let score = 0;
+    for(let q of questions) {
+      const userAnswer = prompt(`${q.question}\nOptions: ${q.options.join(", ")}`);
+      if(userAnswer && userAnswer.toLowerCase() === q.answer.toLowerCase()) {
+        alert("correct 😘");
+        score++;
+      } else {
+        alert(`wrong haha the answer was "${q.answer}"`);
+      }
+    }
+    alert(`quiz finished you got ${score} out of ${questions.length} ❤️\nHope you know me well 😏`);
+  }
+
+  // Album Lightbox
+  function openLightbox(img) {
+    document.querySelector("#lightbox img").src = img.src;
+    document.getElementById("lightbox").style.display = "flex";
+  }
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+</script>
+
 </body>
 </html>
