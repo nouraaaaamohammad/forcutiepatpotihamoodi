@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love Surprise</title>
+<title>love surprise</title>
 <style>
   body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: #fff0f5;
     padding: 50px;
+    text-transform: lowercase;
   }
   #mainMenu {
     display: none;
@@ -61,44 +62,149 @@
     max-height: 80%;
     border-radius: 10px;
   }
+
+  /* letter modal */
+  #letterModal {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(255,182,193,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  #letterContentBox {
+    background: #fff0f5;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255,105,180,0.5);
+    animation: popIn 0.3s ease;
+  }
+  #letterContentBox h2 {
+    color: #ff1493;
+    margin-bottom: 15px;
+  }
+  #letterContentBox p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  #letterContentBox span.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #ff1493;
+  }
+
+  /* songs modal */
+  #songsModal {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(255,182,193,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  #songsContentBox {
+    background: #fff0f5;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255,105,180,0.5);
+  }
+  #songsContentBox h2 {
+    color: #ff1493;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #songsContentBox span.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #ff1493;
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
 </style>
 </head>
 <body>
 
-<h1>hi my love, this is a simple thing i did for you hehe 😘 i hope you like it</h1>
-<p>if you want to enter the main menu, you should enter the passcode. you have to guess it heh:</p>
-<input type="password" id="passcodeInput" placeholder="Enter passcode">
-<button onclick="checkPasscode()">Enter</button>
+<h1>hi my love this is a simple thing i did for you hehe 😘 i hope you like it</h1>
+<p>if you want to enter the main menu, you should enter the passcode you have to guess it:</p>
+<input type="password" id="passcodeInput" placeholder="enter passcode">
+<button onclick="checkPasscode()">enter</button>
 <p id="wrongPass">that's wrong dummy head guess again (hint: it's a date)</p>
 
 <div id="mainMenu">
-  <h2>Main Menu</h2>
-  <div class="box" onclick="alert('A small letter for you my love')">A small letter for you my love</div>
-  <div class="box" onclick="alert('Songs that remind me of you')">Songs remind me of you</div>
-  <div class="box" onclick="alert('Letters for you my sweet love')">Letters for you my sweet love</div>
+  <h2>main menu</h2>
+  <div class="box" onclick="openLetter()">a small letter for you my love</div>
+  <div class="box" onclick="openSongs()">songs remind me of you</div>
+  <div class="box" onclick="alert('letters for you my sweet love')">letters for you my sweet love</div>
   <div class="box" onclick="checkSecondPasscode()">smoll album of your hot gf</div>
   <div class="box" onclick="loveQuiz()">mini quiz about me</div>
+</div>
+
+<!-- Letter Modal -->
+<div id="letterModal">
+  <div id="letterContentBox">
+    <span class="close" onclick="closeLetter()">✖</span>
+    <h2>my sweet love ❤️</h2>
+    <p>
+      hey baby, i told you i was doing a code and this is it i made it but it deleted not only onceee, many times, but i repeated again and again only for you, this smoll gift i can give to you i love you so much i know last days been hard on you but i just want to keep reminding you that i love you i want you to feel it, i love you so much hamoodi you're so strong i wish you all the best in your studies my love i know it's hard and it's too much but it will end in a good way inshallah i believe in you i know you will make it you're strong because you've handled a lot already and i am so so so so proud of you baby good job god bless you i love you so much
+    </p>
+  </div>
+</div>
+
+<!-- Songs Modal -->
+<div id="songsModal">
+  <div id="songsContentBox">
+    <span class="close" onclick="closeSongs()">✖</span>
+    <h2>songs that remind me of you 🎶</h2>
+    <ol>
+      <li><strong>superpowers – daniel caesar:</strong> because you told me you liked it and i can't listen to it without thinking of you.</li>
+      <li><strong>good looking boy:</strong> i always told you i liked this song because it reminds me of you and your handsome face.</li>
+      <li><strong>anyone else but you:</strong> this song reminds me of you because it's nice, i just think of you.</li>
+      <li><strong>any d4vd song in general</strong></li>
+      <li><strong>those eyes:</strong> it was written about you.</li>
+      <li><strong>i love my boyfriend – princess chelsea:</strong> no need to explain hehe.</li>
+    </ol>
+  </div>
 </div>
 
 <!-- Album Section -->
 <div id="album" style="display:none; margin-top: 20px;">
   <h2>my album for you 😘</h2>
-  <!-- Add your images here -->
-  <img src="Screenshot 2025-10-05 100922" alt="Photo 1" onclick="openLightbox(this)">
-  <img src="Screenshot 2025-10-05 100815" alt="Photo 2" onclick="openLightbox(this)">
-  <img src="Screenshot 2025-10-05 100319" alt="Photo 3" onclick="openLightbox(this)">
-  <img src="Screenshot 2025-10-05 100306" alt="Photo 4" onclick="openLightbox(this)">
-  <img src="Screenshot 2025-10-05 100140" alt="Photo 5" onclick="openLightbox(this)">
-  <img src="Screenshot 2025-10-05 100106" alt="Photo 6" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100106" alt="photo 1" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100140" alt="photo 2" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100306" alt="photo 3" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100319" alt="photo 4" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100815" alt="photo 5" onclick="openLightbox(this)">
+  <img src="Screenshot 2025-10-05 100922" alt="photo 6" onclick="openLightbox(this)">
 </div>
 
 <!-- Lightbox for album images -->
 <div id="lightbox" onclick="closeLightbox()">
-  <img src="" alt="Enlarged Photo">
+  <img src="" alt="enlarged photo">
 </div>
 
 <script>
-  // First Passcode
+  // first passcode
   const firstPasscode = "162009";
   function checkPasscode() {
     const input = document.getElementById("passcodeInput").value;
@@ -113,46 +219,62 @@
     }
   }
 
-  // Second Passcode for album
+  // second passcode for album
   function checkSecondPasscode() {
-    let secondPass = prompt("Enter the secret passcode to see the album:");
+    let secondPass = prompt("enter the secret passcode to see the album:");
     if(secondPass && secondPass.toLowerCase() === "i wanna see my sexy girlfriend") {
-      alert("yay You can see the album 😘");
+      alert("yay you can see the album 😘");
       document.getElementById("album").style.display = "block";
     } else {
-      alert('that's wrong my love try again, Hint: you should say "i wanna see my..."');
+      alert('oppsie, that\'s wrong! hint: you should say "i wanna see my..."');
     }
   }
 
-  // Love Quiz
+  // love quiz
   function loveQuiz() {
     const questions = [
-      { question: "What is my favorite color?", options: ["pink", "blue", "white", "purple"], answer: "white" },
-      { question: "Which snack do I love?", options: ["chocolate", "chips", "ice cream", "cookies", "you"], answer: "you" },
-      { question: "What color is my hair?", options: ["dark brown", "light brown", "red"], answer: "light brown" },
-      { question: "What’s my favorite song?", options: ["intro(end of the world)", "anyone else but you", "good looking"], answer: "anyone else but you" },
-      { question: "Do you like me?", options: ["yes", "opposite of no", "oui", "si"], answer: "yes" }
+      { question: "what is my favorite color", options: ["pink", "blue", "white", "purple"], answer: "white" },
+      { question: "which snack do i love", options: ["chocolate", "chips", "ice cream", "cookies", "you"], answer: "you" },
+      { question: "what color is my hair", options: ["dark brown", "light brown", "red"], answer: "light brown" },
+      { question: "what’s my favorite song", options: ["intro(end of the world)", "anyone else but you", "good looking"], answer: "anyone else but you" },
+      { question: "do you like me", options: ["yes", "opposite of no", "oui", "si"], answer: "yes" }
     ];
     let score = 0;
     for(let q of questions) {
-      const userAnswer = prompt(`${q.question}\nOptions: ${q.options.join(", ")}`);
+      const userAnswer = prompt(`${q.question}\noptions: ${q.options.join(", ")}`);
       if(userAnswer && userAnswer.toLowerCase() === q.answer.toLowerCase()) {
-        alert("correct 😘");
+        alert("correct good job 😘");
         score++;
       } else {
-        alert(`wrong haha the answer was "${q.answer}"`);
+        alert(`oopsie, not quite! the answer was "${q.answer}"`);
       }
     }
-    alert(`quiz finished you got ${score} out of ${questions.length} ❤️\nHope you know me well 😏`);
+    alert(`quiz finished! you got ${score} out of ${questions.length} ❤️\nhope you know me well! 😏`);
   }
 
-  // Album Lightbox
+  // album lightbox
   function openLightbox(img) {
     document.querySelector("#lightbox img").src = img.src;
     document.getElementById("lightbox").style.display = "flex";
   }
   function closeLightbox() {
     document.getElementById("lightbox").style.display = "none";
+  }
+
+  // letter modal
+  function openLetter() {
+    document.getElementById("letterModal").style.display = "flex";
+  }
+  function closeLetter() {
+    document.getElementById("letterModal").style.display = "none";
+  }
+
+  // songs modal
+  function openSongs() {
+    document.getElementById("songsModal").style.display = "flex";
+  }
+  function closeSongs() {
+    document.getElementById("songsModal").style.display = "none";
   }
 </script>
 
